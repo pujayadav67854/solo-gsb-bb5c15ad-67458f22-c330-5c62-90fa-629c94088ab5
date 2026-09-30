@@ -1,0 +1,16 @@
+services:
+  cutter:
+    build: .
+    image: paper-cutter:latest
+    container_name: paper-cutter
+    ports:
+      - "8000:8000"
+    volumes:
+      - cutter-data:/data
+    environment:
+      # SQLite 数据库文件路径（容器内）。默认即 /data/cutter.db，已挂载持久卷
+      CUTTER_DB: /data/cutter.db
+    restart: unless-stopped
+
+volumes:
+  cutter-data:

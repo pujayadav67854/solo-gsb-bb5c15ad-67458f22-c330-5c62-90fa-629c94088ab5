@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>矩形纸张贯通裁切排样</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main>
+  <h1>矩形纸张贯通裁切排样</h1>
+
+  <div id="status" class="status-bar"></div>
+
+  <section class="card">
+    <h2>1. 输入参数</h2>
+    <div class="grid">
+      <label>母纸长 (mm)<input id="master_w" type="number" min="1" max="10000" value="1200"></label>
+      <label>母纸宽 (mm)<input id="master_h" type="number" min="1" max="10000" value="800"></label>
+      <label>刀缝宽度 (mm，≥0)<input id="kerf" type="number" min="0" max="1000" value="3"></label>
+      <label>张数上限<input id="max_sheets" type="number" min="1" max="1000" value="10"></label>
+      <label>搜索状态数上限<input id="max_states" type="number" min="1" max="100000000" value="200000"></label>
+    </div>
+
+    <h3>成品清单</h3>
+    <table id="products">
+      <thead>
+        <tr><th>名称</th><th>长 (mm)</th><th>宽 (mm)</th><th>份数</th><th>允许旋转 90°</th><th></th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button type="button" id="add-product" class="secondary">+ 添加成品</button>
+
+    <p id="errors" class="errors"></p>
+
+    <div class="actions">
+      <button type="button" id="save">保存输入</button>
+      <button type="button" id="solve" disabled>开始搜索（找到可行方案即返回）</button>
+      <a id="export-link" class="btn-link disabled-link" href="/export" target="_blank">导出裁切单（PDF/打印）</a>
+    </div>
+    <p id="search-msg" class="search-msg"></p>
+  </section>
+
+  <section class="card">
+    <h2>2. 排样结果</h2>
+    <div id="result"><p class="muted">加载中…</p></div>
+  </section>
+</main>
+<script src="/static/renderer.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
